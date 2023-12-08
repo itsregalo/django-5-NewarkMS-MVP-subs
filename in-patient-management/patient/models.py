@@ -12,9 +12,9 @@ class Patient(models.Model):
     admission_date = models.DateField()
     discharge_date = models.DateField(null=True, blank=True)
     status = models.CharField(max_length=20, default='admitted')
-    room = models.ForeignKey('Room', on_delete=models.CASCADE, null=True, blank=True)
-    bed = models.ForeignKey('Bed', on_delete=models.CASCADE, null=True, blank=True)
-    nurse_assigned = models.ForeignKey('Nurse', on_delete=models.CASCADE, null=True, blank=True)
+    room = models.ForeignKey('core.Room', on_delete=models.CASCADE, null=True, blank=True)
+    bed = models.ForeignKey('core.Bed', on_delete=models.CASCADE, null=True, blank=True)
+    nurse_assigned = models.ForeignKey('nurse.Nurse', on_delete=models.CASCADE, null=True, blank=True)
     timestamp = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
 

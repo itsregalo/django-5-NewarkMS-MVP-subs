@@ -9,9 +9,9 @@ class Surgery(models.Model):
     surgery_name = models.CharField(max_length=255)
     surgery_date = models.DateField()
     surgery_time = models.TimeField()
-    surgeon = models.ForeignKey('Doctor', on_delete=models.CASCADE)
-    room = models.ForeignKey('Room', on_delete=models.CASCADE)
-    patient = models.ForeignKey('Patient', on_delete=models.CASCADE)
+    surgeon = models.ForeignKey('doctor.Doctor', on_delete=models.CASCADE)
+    room = models.ForeignKey('core.Room', on_delete=models.CASCADE)
+    patient = models.ForeignKey('patient.Patient', on_delete=models.CASCADE)
     timestamp = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
 
@@ -25,8 +25,8 @@ class Surgery(models.Model):
 
 class SurgeryRoom(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    room = models.ForeignKey('Room', on_delete=models.CASCADE)
-    surgery = models.ForeignKey('Surgery', on_delete=models.CASCADE)
+    room = models.ForeignKey('core.Room', on_delete=models.CASCADE)
+    surgery = models.ForeignKey('surgery.Surgery', on_delete=models.CASCADE)
     is_occupied = models.BooleanField(default=False)
     timestamp = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
@@ -40,8 +40,8 @@ class SurgeryRoom(models.Model):
     
 class SurgeryBooking(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    surgery = models.ForeignKey('Surgery', on_delete=models.CASCADE)
-    patient = models.ForeignKey('Patient', on_delete=models.CASCADE)
+    surgery = models.ForeignKey('surgery.Surgery', on_delete=models.CASCADE)
+    patient = models.ForeignKey('patient.Patient', on_delete=models.CASCADE)
     timestamp = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
 
